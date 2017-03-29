@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.YsxxMapper" >
+  <resultMap id="BaseResultMap" type="com.jim.yygh.entity.po.Ysxx" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="ys_name" property="ysName" jdbcType="VARCHAR" />
+    <result column="ys_sex" property="ysSex" jdbcType="CHAR" />
+    <result column="ys_age" property="ysAge" jdbcType="INTEGER" />
+    <result column="ys_summary" property="ysSummary" jdbcType="VARCHAR" />
+    <result column="ys_zc" property="ysZc" jdbcType="VARCHAR" />
+    <result column="ys_photo" property="ysPhoto" jdbcType="VARCHAR" />
+    <result column="ks_id" property="ksId" jdbcType="INTEGER" />
+    <result column="isdel" property="isdel" jdbcType="VARCHAR" />
+    <result column="ys_phone" property="ysPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, ys_name, ys_sex, ys_age, ys_summary, ys_zc, ys_photo, ks_id, isdel, ys_phone
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jim.yygh.entity.po.YsxxExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ysxx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ysxx
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ysxx
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jim.yygh.entity.po.YsxxExample" >
+    delete from ysxx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jim.yygh.entity.po.Ysxx" >
+    insert into ysxx (id, ys_name, ys_sex, 
+      ys_age, ys_summary, ys_zc, 
+      ys_photo, ks_id, isdel, 
+      ys_phone)
+    values (#{id,jdbcType=VARCHAR}, #{ysName,jdbcType=VARCHAR}, #{ysSex,jdbcType=CHAR}, 
+      #{ysAge,jdbcType=INTEGER}, #{ysSummary,jdbcType=VARCHAR}, #{ysZc,jdbcType=VARCHAR}, 
+      #{ysPhoto,jdbcType=VARCHAR}, #{ksId,jdbcType=INTEGER}, #{isdel,jdbcType=VARCHAR}, 
+      #{ysPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jim.yygh.entity.po.Ysxx" >
+    insert into ysxx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ysName != null" >
+        ys_name,
+      </if>
+      <if test="ysSex != null" >
+        ys_sex,
+      </if>
+      <if test="ysAge != null" >
+        ys_age,
+      </if>
+      <if test="ysSummary != null" >
+        ys_summary,
+      </if>
+      <if test="ysZc != null" >
+        ys_zc,
+      </if>
+      <if test="ysPhoto != null" >
+        ys_photo,
+      </if>
+      <if test="ksId != null" >
+        ks_id,
+      </if>
+      <if test="isdel != null" >
+        isdel,
+      </if>
+      <if test="ysPhone != null" >
+        ys_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ysName != null" >
+        #{ysName,jdbcType=VARCHAR},
+      </if>
+      <if test="ysSex != null" >
+        #{ysSex,jdbcType=CHAR},
+      </if>
+      <if test="ysAge != null" >
+        #{ysAge,jdbcType=INTEGER},
+      </if>
+      <if test="ysSummary != null" >
+        #{ysSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="ysZc != null" >
+        #{ysZc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysPhoto != null" >
+        #{ysPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="ksId != null" >
+        #{ksId,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="ysPhone != null" >
+        #{ysPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jim.yygh.entity.po.YsxxExample" resultType="java.lang.Integer" >
+    select count(*) from ysxx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ysxx
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysName != null" >
+        ys_name = #{record.ysName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysSex != null" >
+        ys_sex = #{record.ysSex,jdbcType=CHAR},
+      </if>
+      <if test="record.ysAge != null" >
+        ys_age = #{record.ysAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.ysSummary != null" >
+        ys_summary = #{record.ysSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysZc != null" >
+        ys_zc = #{record.ysZc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysPhoto != null" >
+        ys_photo = #{record.ysPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ksId != null" >
+        ks_id = #{record.ksId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isdel != null" >
+        isdel = #{record.isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ysPhone != null" >
+        ys_phone = #{record.ysPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ysxx
+    set id = #{record.id,jdbcType=VARCHAR},
+      ys_name = #{record.ysName,jdbcType=VARCHAR},
+      ys_sex = #{record.ysSex,jdbcType=CHAR},
+      ys_age = #{record.ysAge,jdbcType=INTEGER},
+      ys_summary = #{record.ysSummary,jdbcType=VARCHAR},
+      ys_zc = #{record.ysZc,jdbcType=VARCHAR},
+      ys_photo = #{record.ysPhoto,jdbcType=VARCHAR},
+      ks_id = #{record.ksId,jdbcType=INTEGER},
+      isdel = #{record.isdel,jdbcType=VARCHAR},
+      ys_phone = #{record.ysPhone,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jim.yygh.entity.po.Ysxx" >
+    update ysxx
+    <set >
+      <if test="ysName != null" >
+        ys_name = #{ysName,jdbcType=VARCHAR},
+      </if>
+      <if test="ysSex != null" >
+        ys_sex = #{ysSex,jdbcType=CHAR},
+      </if>
+      <if test="ysAge != null" >
+        ys_age = #{ysAge,jdbcType=INTEGER},
+      </if>
+      <if test="ysSummary != null" >
+        ys_summary = #{ysSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="ysZc != null" >
+        ys_zc = #{ysZc,jdbcType=VARCHAR},
+      </if>
+      <if test="ysPhoto != null" >
+        ys_photo = #{ysPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="ksId != null" >
+        ks_id = #{ksId,jdbcType=INTEGER},
+      </if>
+      <if test="isdel != null" >
+        isdel = #{isdel,jdbcType=VARCHAR},
+      </if>
+      <if test="ysPhone != null" >
+        ys_phone = #{ysPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jim.yygh.entity.po.Ysxx" >
+    update ysxx
+    set ys_name = #{ysName,jdbcType=VARCHAR},
+      ys_sex = #{ysSex,jdbcType=CHAR},
+      ys_age = #{ysAge,jdbcType=INTEGER},
+      ys_summary = #{ysSummary,jdbcType=VARCHAR},
+      ys_zc = #{ysZc,jdbcType=VARCHAR},
+      ys_photo = #{ysPhoto,jdbcType=VARCHAR},
+      ks_id = #{ksId,jdbcType=INTEGER},
+      isdel = #{isdel,jdbcType=VARCHAR},
+      ys_phone = #{ysPhone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.KsxxMapperCustom" >
+   <resultMap id="ksxxMap" type="com.jim.yygh.entity.vo.KsxxCustom">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="ks_name" property="ksName" jdbcType="VARCHAR" />
+        <result column="ksjj" property="ksjj" jdbcType="VARCHAR" />
+        <result column="sfsc" property="sfsc" jdbcType="CHAR" />
+        <result column="ksjs" property="ksjs" jdbcType="VARCHAR" />
+        <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <collection property="childrenKsxxCustom" column="id" select="findchildrenksxx">
+        </collection>
+    </resultMap>
+
+    <select id="findAllKsxx" parameterType="int" resultMap="ksxxMap">
+        SELECT * from ksxx where pid=#{pid}
+    </select>
+    <select id="findchildrenksxx" resultMap="ksxxMap" parameterType="int">
+        select * from ksxx where pid =#{pid}
+    </select>
+<!--       <resultMap id="ksxxMap" type="com.jim.yygh.entity.vo.KsxxCustom">
+            <id column="id" property="id" jdbcType="INTEGER" />
+            <result column="ks_name" property="ksName" jdbcType="VARCHAR" />
+            <result column="ksjj" property="ksjj" jdbcType="VARCHAR" />
+            <result column="sfsc" property="sfsc" jdbcType="CHAR" />
+            <result column="ksjs" property="ksjs" jdbcType="VARCHAR" />
+            <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+            <result column="pid" property="pid" jdbcType="INTEGER" />
+            <collection property="childrenKsxxCustom"  ofType="com.jim.yygh.entity.vo.KsxxCustom"   column="pid">
+                <id column="id" property="id" jdbcType="INTEGER" />
+                <result column="ks_name" property="ksName" jdbcType="VARCHAR" />
+                <result column="ksjj" property="ksjj" jdbcType="VARCHAR" />
+                <result column="sfsc" property="sfsc" jdbcType="CHAR" />
+                <result column="ksjs" property="ksjs" jdbcType="VARCHAR" />
+                <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+
+            </collection>
+        </resultMap>
+
+        <select id="findAllKsxx" parameterType="int" resultMap="ksxxMap">
+             SELECT * from ksxx a LEFT  JOIN  ksxx b ON  a.id =b.pid where a.pid=#{pid}
+        </select>-->
+
+        <sql id="allColumns">
+          id,ks_name,ksjj,sfsc,ksjs,addtime,pid
+        </sql>
+
+        <sql id="where_conditions">
+            <where>
+                <if test="ksxxCustom!=null">
+                    <if test="ksxxCustom.id!=null and ksxxCustom.id!=''">
+                        and id =#{ID,jdbcType=varchar}
+                    </if>
+                    <if test="ksxxCustom.ksName!=null and ksxxCustom.ksName!=''">
+                        and ks_name =#{ks_name,jdbcType=varchar}
+                    </if>
+                    <if test="ksxxCustom.ksjj!=null and ksxxCustom.ksjj!=''">
+                        and ksjj =#{ksjj,jdbcType=varchar}
+                    </if>
+                    <if test="ksxxCustom.sfsc!=null and ksxxCustom.sfsc!=''">
+                        and sfsc =#{sfsc,jdbcType=char}
+                    </if>
+                    <if test="ksxxCustom.sfsc!=null and ksxxCustom.sfsc!=''">
+                        and ksjs =#{ksjs,jdbcType=varchar}
+                    </if>
+                    <if test="ksxxCustom.addtime!=null and ksxxCustom.addtime!=''">
+                        and addtime =#{addtime,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="ksxxCustom.pid!=null and ksxxCustom.pid!=''">
+                        and pid =#{pid,jdbcType=varchar}
+                    </if>
+                </if>
+            </where>
+        </sql>
+
+
+
+
+
+        <!--分页查询-->
+    <select id="findKsxxList" parameterType="com.jim.yygh.entity.vo.KsxxQueryVo" resultType="com.jim.yygh.entity.vo.KsxxCustom">
+          SELECT  <include refid="allColumns"></include>
+        FROM  KSXX <include refid="where_conditions"></include>
+        <if test="pageQuery!=null">
+            limit #{pageQuery.PageQuery_start} , #{pageQuery.PageQuery_end}
+        </if>
+    </select>
+<!-- 查询科室数量-->
+    <select id="findKsxxCount" parameterType="com.jim.yygh.entity.vo.KsxxQueryVo" resultType="int">
+        SELECT COUNT (*) FROM ksxx <include refid="where_conditions"></include>
+    </select>
+
+</mapper>

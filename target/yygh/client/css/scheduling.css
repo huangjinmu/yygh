@@ -1,0 +1,185 @@
+.scheduling{
+  padding-bottom: 60px;
+}
+
+.scheduling .caption{
+ line-height: 50px; 
+ text-indent: 10px;
+
+}
+
+.scheduling .caption .back{
+  font-size: 14px;
+  color: #00B3EC;
+  margin-left: 16px;
+}
+
+.scheduling .table{
+
+}
+.scheduling  .left{
+  width: 730px;
+  height: 324px;
+  float: left;
+  font-size: 12px;
+}
+
+.schedule_box_wrap,
+.schedule_box{
+  width: 658px;
+  height: 324px;
+  float: left;
+  position: relative;
+  /*background-color: #ccc;*/
+}
+.schedule_box{
+  overflow: hidden;
+}
+.schedule_box_wrap{
+  width: 99999px;
+  transition: all 1s;
+}
+
+.schedule_box_wrap{
+  position: absolute;
+  left: 0;
+  top: 0;
+
+}
+
+.schedule_box_item{
+  width: 94px;
+  height: auto;
+  float: left;
+}
+.schedule_main {
+  text-align: center;
+  border-bottom: 1px solid #dcdddd;
+  position: relative;
+}
+.schedule_main .date{
+    color: #868686;
+    background: #f8fafc;
+    line-height: 18px;
+    height: 36px;
+    padding: 4px 0; 
+    width: 94px;
+    border: 1px solid #dcdddd;
+    border-bottom: none;
+    border-right: none;
+}
+.schedule_main .status{
+    background: #fff;
+    width: 94px;
+    height: 92px;
+    line-height: 90px;
+    border: 1px solid #dcdddd;
+    border-bottom: none;
+    border-right: none;
+    cursor: pointer;
+}
+.schedule_main  .status_full{
+  background-color: #fafafa;
+}
+
+.schedule_tool_right,
+.schedule_tool_left{
+  width: 36px;
+  height: 324px;
+  float: left;
+  z-index: 2;
+  /*background-color: red*/
+}
+.schedule_main .schedule_tool_left .date,
+.schedule_main .schedule_tool_right .date{
+  width: 100%;
+  line-height: 36px;
+  background-color: #fff;
+}
+.schedule_main .schedule_tool_left .status,
+.schedule_main .schedule_tool_right .status{
+  width: 100%;
+  background-color: #f2f8ff;
+}
+.schedule_main .schedule_tool_left .status,
+.schedule_main .schedule_tool_right .status{
+  border-top-color: #f2f8ff;
+
+}
+.schedule_main .schedule_tool_right {
+  position: absolute;
+  right: 1px;
+  top: 0;
+
+}
+.schedule_main .schedule_tool_right .status{
+  border-left: 1px solid #dcdddd
+}
+
+.schedule_tool_left .icon{
+  display: inline-block;
+  width: 32px;
+  height: 36px;
+  background:url(../img/icon-scheduling-left.jpg) no-repeat -2px -6px;
+}
+.schedule_tool_right .icon{
+  display: inline-block;
+  width: 32px;
+  height: 36px;
+  background:url(../img/icon-scheduling-right.jpg) no-repeat -2px -6px;
+}
+
+/*右侧内容*/
+.scheduling  .right{
+  width: 270px;
+  height: 324px;
+  float: right;
+
+}
+.scheduling  .right .table{
+  border:1px solid #dcdddd;
+}
+
+
+.scheduling .right .table{
+  padding: 10px 5px 10px 10px;
+  overflow: auto;
+  height: 303px;
+  border: 1px solid #dcdddd;
+  line-height: 18px;
+}
+.scheduling .right .table .h3{
+  line-height: 40px;
+}
+.scheduling .right .table  dl{
+    font-size: 12px;
+    padding-bottom: 5px;
+    color: #888;
+    overflow: hidden;
+}
+.scheduling .right .table dt{
+    display: inline-block;
+    font-size: 12px;
+    color: #555;
+    float: left;
+    width: 68px;
+}
+.scheduling .right .table  dd{
+    display: inline-block;
+    float: left;
+    font-weight: normal;
+    width: 170px;
+}
+
+.scheduling  .bottom{
+  color: #9f9f9f;
+  font-size: 16px;
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  border: 1px solid #dcdddd;
+  border-top: none;
+}
+.scheduling  .bottom img{
+  vertical-align: middle;
+}

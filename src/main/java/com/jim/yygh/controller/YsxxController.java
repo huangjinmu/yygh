@@ -35,6 +35,7 @@ public class YsxxController {
     @ResponseBody
     public DataGridResultInfo findYsxxByKsId(HttpServletRequest request, HttpServletResponse response){
         String id = request.getParameter("id");
+
         DataGridResultInfo dgri=new DataGridResultInfo();
        List<YsxxCustom> ysxxlist=ysxxService.findYsxxByKsId(id);
         if (ysxxlist!=null&&ysxxlist.size()>0)

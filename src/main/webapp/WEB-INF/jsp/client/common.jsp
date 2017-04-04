@@ -16,3 +16,5 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/client/css/ui-component.css">
 <script type="text/javascript" src="${ctx }/client/js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="${ctx }/client/js/ui.js"></script>
+<script type="text/javascript" src="${ctx }/client/js/j.js"></script>
+

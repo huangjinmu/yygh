@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.YsxxMapperCustom" >
+    <resultMap id="BaseResultMap" type="com.jim.yygh.entity.vo.YsxxCustom" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="ys_name" property="ysName" jdbcType="VARCHAR" />
+        <result column="ys_sex" property="ysSex" jdbcType="CHAR" />
+        <result column="ys_age" property="ysAge" jdbcType="DATE" />
+        <result column="ys_summary" property="ysSummary" jdbcType="VARCHAR" />
+        <result column="ys_zc" property="ysZc" jdbcType="VARCHAR" />
+        <result column="ys_photo" property="ysPhoto" jdbcType="VARCHAR" />
+        <result column="ks_id" property="ksId" jdbcType="INTEGER" />
+        <result column="isdel" property="isdel" jdbcType="VARCHAR" />
+        <result column="ys_phone" property="ysPhone" jdbcType="VARCHAR" />
+    </resultMap>
+        <sql id="allColumns">
+          id,ys_name,ys_sex,ys_age,ys_summary,ys_zc,ys_photo,ks_id,isdel,ys_phone
+        </sql>
+
+        <sql id="where_conditions">
+
+                <if test="ysxxCustom!=null">
+                    <if test="ysxxCustom.id!=null and ysxxCustom.id!=''">
+                        and id =#{ysxxCustom.id,jdbcType=varchar}
+                    </if>
+                    <if test="ysxxCustom.ysName!=null and ysxxCustom.ysName!=''">
+                        and ys_name =#{ysxxCustom.ysName,jdbcType=varchar}
+                    </if>
+                    <if test="ysxxCustom.ysSex!=null and ysxxCustom.ysSex!=''">
+                        and ys_sex =#{ysxxCustom.ysSex,jdbcType=char}
+                    </if>
+                    <if test="ysxxCustom.ysAge!=null and ysxxCustom.ysAge!=''">
+                        and ys_age =#{ysxxCustom.ysAge,jdbcType=DATE}
+                    </if>
+                    <if test="ysxxCustom.ysSummary!=null and ysxxCustom.ysSummary!=''">
+                        and ys_summary =#{ysxxCustom.ysSummary,jdbcType=varchar}
+                    </if>
+                    <if test="ysxxCustom.ysZc!=null and ysxxCustom.ysZc!=''">
+                        and ys_zc =#{ysxxCustom.ysZc,jdbcType=varchar}
+                    </if>
+                    <if test="ysxxCustom.ysPhoto!=null and ysxxCustom.ysPhoto!=''">
+                        and ys_photo =#{ysxxCustom.ysPhoto,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="ysxxCustom.ksId!=null and ysxxCustom.ksId!=''">
+                        and ks_id =#{ysxxCustom.ksId,jdbcType=INTEGER}
+                    </if>
+                    <if test="ysxxCustom.isdel!=null and ysxxCustom.isdel!=''">
+                        and isdel =#{ysxxCustom.isdel,jdbcType=TIMESTAMP}
+                    </if>
+                    <if test="ysxxCustom.ysPhone!=null and ysxxCustom.ysPhone!=''">
+                        and ys_phone =#{ysxxCustom.ysPhone,jdbcType=varchar}
+                    </if>
+                </if>
+
+        </sql>
+
+
+
+
+
+        <!--分页查询-->
+    <select id="findYsxx" parameterType="com.jim.yygh.entity.vo.YsxxQueryVo" resultMap="BaseResultMap">
+          SELECT  *
+        FROM  YSXX
+
+            <where>
+                <include refid="where_conditions"></include>
+            </where>
+
+
+        <if test="pageQuery!=null">
+            limit #{pageQuery.PageQuery_start} , #{pageQuery.PageQuery_end}
+        </if>
+    </select>
+<!-- 根据科室id查询医生数量-->
+    <select id="findYsxxCount" parameterType="com.jim.yygh.entity.vo.YsxxQueryVo" resultType="int">
+        SELECT COUNT(*) FROM ysxx
+        <if test="ysxxCustom!=null">
+            <where>
+                <include refid="where_conditions"></include>
+            </where>
+        </if>
+    </select>
+
+</mapper>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.PermissionMapperCustom" >
+
+    <resultMap id="BaseResultMap" type="com.jim.yygh.entity.vo.PermissionCustom" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="percode" property="percode" jdbcType="VARCHAR" />
+        <result column="pid" property="pid" jdbcType="VARCHAR" />
+        <result column="pids" property="pids" jdbcType="VARCHAR" />
+        <result column="available" property="available" jdbcType="CHAR" />
+    </resultMap>
+   <!-- com/jim/yygh/dao/PermissionMapperCustom.xml-->
+    <sql id="where_condition">
+        <if test="permissionCustom!=null">
+            <if test="permissionCustom.id!=null and permissionCustom.id!=''">
+                and id=#{permissionCustom.id}
+            </if>
+            <if test="permissionCustom.name!=null and permissionCustom.name!=''">
+                and name=#{permissionCustom.name}
+            </if>
+            <if test="permissionCustom.type!=null and permissionCustom.type!=''">
+                and type=#{permissionCustom.type}
+            </if>
+            <if test="permissionCustom.url!=null and permissionCustom.url!=''">
+                and url=#{permissionCustom.url}
+            </if>
+            <if test="permissionCustom.percode!=null and permissionCustom.percode!=''">
+                and percode=#{permissionCustom.percode}
+            </if>
+            <if test="permissionCustom.pid!=null and permissionCustom.pid!=''">
+                and pid=#{permissionCustom.pid}
+            </if>
+            <if test="permissionCustom.pids!=null and permissionCustom.pids!=''">
+                and pids=#{permissionCustom.pids}
+            </if>
+            <if test="permissionCustom.available!=null and permissionCustom.available!=''">
+                and available=#{permissionCustom.available}
+            </if>
+            <if test="permissionCustom.icon!=null and permissionCustom.icon!=''">
+                and icon=#{permissionCustom.icon}
+            </if>
+        </if>
+
+    </sql>
+    <sql id="set_condition">
+        <if test="permissionCustom!=null">
+            <if test="permissionCustom.id!=null and permissionCustom.id!=''">
+                 id=#{permissionCustom.id},
+            </if>
+            <if test="permissionCustom.name!=null and permissionCustom.name!=''">
+                 name=#{permissionCustom.name},
+            </if>
+            <if test="permissionCustom.type!=null and permissionCustom.type!=''">
+                type=#{permissionCustom.type},
+            </if>
+            <if test="permissionCustom.url!=null and permissionCustom.url!=''">
+                url=#{permissionCustom.url},
+            </if>
+            <if test="permissionCustom.percode!=null and permissionCustom.percode!=''">
+                 percode=#{permissionCustom.percode},
+            </if>
+            <if test="permissionCustom.pid!=null and permissionCustom.pid!=''">
+                 pid=#{permissionCustom.pid},
+            </if>
+            <if test="permissionCustom.pids!=null and permissionCustom.pids!=''">
+                 pids=#{permissionCustom.pids},
+            </if>
+            <if test="permissionCustom.available!=null and permissionCustom.available!=''">
+                 available=#{permissionCustom.available},
+            </if>
+            <if test="permissionCustom.icon!=null and permissionCustom.icon!=''">
+                 icon=#{permissionCustom.icon},
+            </if>
+        </if>
+    </sql>
+
+<sql id="into_condition">
+    <if test="permissionCustom!=null">
+        <if test="permissionCustom.id!=null and permissionCustom.id!=''">
+            id,
+        </if>
+        <if test="permissionCustom.name!=null and permissionCustom.name!=''">
+            name,
+        </if>
+        <if test="permissionCustom.type!=null and permissionCustom.type!=''">
+            type,
+        </if>
+        <if test="permissionCustom.url!=null and permissionCustom.url!=''">
+            url,
+        </if>
+        <if test="permissionCustom.percode!=null and permissionCustom.percode!=''">
+            percode,
+        </if>
+        <if test="permissionCustom.pid!=null and permissionCustom.pid!=''">
+            pid,
+        </if>
+        <if test="permissionCustom.pids!=null and permissionCustom.pids!=''">
+            pids,
+        </if>
+        <if test="permissionCustom.available!=null and permissionCustom.available!='' ">
+            available,
+        </if>
+        <if test="permissionCustom.icon != null and permissionCustom.icon!=''" >
+            icon,
+        </if>
+    </if>
+</sql>
+<sql id="values_condition">
+    <if test="permissionCustom!=null">
+       <!-- <if test="permissionCustom.id!=null and permissionCustom.id!=''">
+            #{permissionCustom.id},
+        </if>-->
+        <if test="permissionCustom.name!=null and permissionCustom.name!=''">
+            #{permissionCustom.name},
+        </if>
+        <if test="permissionCustom.type!=null and permissionCustom.type!=''">
+            #{permissionCustom.type},
+        </if>
+        <if test="permissionCustom.url!=null and permissionCustom.url!=''">
+           #{permissionCustom.url},
+        </if>
+        <if test="permissionCustom.percode!=null and permissionCustom.percode!=''">
+           #{permissionCustom.percode},
+        </if>
+        <if test="permissionCustom.pid!=null and permissionCustom.pid!=''">
+            #{permissionCustom.pid},
+        </if>
+        <if test="permissionCustom.pids!=null and permissionCustom.pids!=''">
+           #{permissionCustom.pids},
+        </if>
+        <if test="permissionCustom.available!=null and permissionCustom.available!=''">
+            #{permissionCustom.available},
+        </if>
+        <if test="permissionCustom.icon!=null and permissionCustom.icon!=''">
+            #{permissionCustom.icon},
+        </if>
+    </if>
+
+</sql>
+
+     <!--获得有分页的列表-->
+
+    <select id="getList" parameterType="com.jim.yygh.entity.vo.PermissionQueryVo" resultMap="BaseResultMap">
+                select * from permission
+                <where>
+                    <include refid="where_condition"></include>
+                </where>
+    </select>
+
+    <!--获取总数-->
+
+    <select id="findCountTotal" parameterType="com.jim.yygh.entity.vo.PermissionQueryVo" resultType="int">
+        select COUNT(*) from permission
+        <where>
+            <include refid="where_condition"></include>
+        </where>
+    </select>
+
+    <!--增加-->
+    <insert id="add" parameterType="com.jim.yygh.entity.vo.PermissionQueryVo" >
+        INSERT INTO permission
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <include refid="into_condition"></include>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+         <include refid="values_condition"></include>
+        </trim>
+    </insert>
+
+    <!--更新信息-->
+    <update id="update" parameterType="com.jim.yygh.entity.vo.PermissionQueryVo" >
+       UPDATE permission
+        <set>
+            <include refid="set_condition"></include>
+        </set>
+         WHERE id=#{permissionCustom.id}
+    </update>
+
+    <!--根据id查询-->
+    <select id="findById" parameterType="String" resultMap="BaseResultMap">
+
+        select * from permission where id=#{id}
+    </select>
+    <!--根据id删除bean-->
+<delete id="deleteById" parameterType="String">
+    DELETE from  permission where id=#{id}
+</delete>
+
+
+</mapper>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.UserMapperCustom" >
+  <resultMap id="BaseResultMap" type="com.jim.yygh.entity.vo.UserCustom" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="CHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+  </resultMap>
+
+<sql id="where_condition"  >
+  <if  test="userCustom!=null">
+      <if test="userCustom.id!=null and userCustom.id!='' ">
+        and id=#{userCustom.id}
+      </if>
+      <if test="userCustom.username!=null and userCustom.username!=''">
+        and userName=#{userCustom.username}
+      </if>
+      <if test="userCustom.password!=null and userCustom.password!='' ">
+        and password=#{userCustom.password}
+      </if>
+      <if test="userCustom.email!=null and userCustom.email!='' ">
+        and email=#{userCustom.email}
+      </if>
+      <if test="userCustom.sex!=null and userCustom.sex!='' ">
+        and sex=#{userCustom.sex}
+      </if>
+      <if test="userCustom.status!=null and userCustom.status!='' ">
+        and status=#{userCustom.status}
+      </if>
+      <if test="userCustom.createtime!=null and userCustom.createtime!='' ">
+        and createtime=#{userCustom.createtime}
+      </if>
+      <if test="userCustom.phone!=null and userCustom.phone!='' ">
+        and phone=#{userCustom.phone}
+      </if>
+  </if>
+</sql>
+  <select id="getList" parameterType="com.jim.yygh.entity.vo.UserQueryVo" resultMap="BaseResultMap">
+    SELECT * FROM  user <where><include refid="where_condition"></include></where>
+  </select>
+
+<select id="findCountTotal" parameterType="com.jim.yygh.entity.vo.UserQueryVo" resultType="int">
+    SELECT COUNT(*) FROM user <where><include refid="where_condition"></include></where>
+</select>
+
+
+
+
+  <insert id="add" parameterType="com.jim.yygh.entity.vo.UserQueryVo" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userCustom.id != null" >
+        id,
+      </if>
+      <if test="userCustom.username != null" >
+        userName,
+      </if>
+      <if test="userCustom.password != null" >
+        password,
+      </if>
+      <if test="userCustom.email != null" >
+        email,
+      </if>
+      <if test="userCustom.sex != null" >
+        sex,
+      </if>
+      <if test="userCustom.status != null" >
+        status,
+      </if>
+      <if test="userCustom.createtime != null" >
+        createtime,
+      </if>
+      <if test="userCustom.phone != null" >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userCustom.id != null" >
+        #{userCustom.id,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.username != null" >
+        #{userCustom.username,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.password != null" >
+        #{userCustom.password,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.email != null" >
+        #{userCustom.email,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.sex != null" >
+        #{userCustom.sex,jdbcType=CHAR},
+      </if>
+      <if test="userCustom.status != null" >
+        #{userCustom.status,jdbcType=CHAR},
+      </if>
+      <if test="userCustom.createtime != null" >
+        #{userCustom.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCustom.phone != null" >
+        #{userCustom.phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="update" parameterType="com.jim.yygh.entity.vo.UserQueryVo" >
+    update user
+    <set >
+      <if test="userCustom.username != null" >
+        userName = #{userCustom.username,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.password != null" >
+        password = #{userCustom.password,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.email != null" >
+        email = #{userCustom.email,jdbcType=VARCHAR},
+      </if>
+      <if test="userCustom.sex != null" >
+        sex = #{userCustom.sex,jdbcType=CHAR},
+      </if>
+      <if test="userCustom.status != null" >
+        status = #{userCustom.status,jdbcType=CHAR},
+      </if>
+      <if test="userCustom.createtime != null" >
+        createtime = #{userCustom.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userCustom.phone != null" >
+        phone = #{userCustom.phone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{userCustom.id,jdbcType=VARCHAR}
+  </update>
+
+<select id="findById" parameterType="java.lang.String" resultMap="BaseResultMap">
+  SELECT  *  FROM  user WHERE ID=#{id}
+</select>
+<delete id="deleteById" parameterType="java.lang.String" >
+  DELETE FROM  user WHERE ID=#{id}
+</delete>
+
+</mapper>

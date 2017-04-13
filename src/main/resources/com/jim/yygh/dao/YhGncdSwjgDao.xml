@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jim.yygh.dao.YhGncdSwjgDao" >
+
+  <resultMap type="com.jim.yygh.entity.po.YhGncdSwjg"  id="BaseResultMap" >
+	<id column="CONTROL_ID" property="controlId" />
+	<result column="GN_DM" property="gndm" />
+	<result column="SWJGDM" property="swjgdm" />
+	<result column="TY_BZ" property="tybz" />
+	<result column="LRR_DM" property="lrrdm" />
+	<result column="LRRQ" property="lrrq" />
+	<result column="XGR_DM" property="xgrdm" />
+	<result column="XGRQ" property="xgrq" />
+  </resultMap>
+  
+  <sql id="AllColumn">
+  CONTROL_ID,GN_DM,SWJGDM,TY_BZ,LRR_DM,LRRQ,XGR_DM,XGRQ
+  </sql>
+  <!-- 根据swjgdm查询停用标志为N的记录 -->
+  <select id="getGncdControlBySwjgdm" parameterType="java.lang.String"   resultMap="BaseResultMap">
+ 		 select  <include refid="AllColumn"></include> from yh_gncd_swjg where swjgdm=#{swjgdm} and ty_bz='N'
+  </select>
+ <!--  查询所有停用标志为N的记录 -->
+  <select id="getGncdControl"  resultMap="BaseResultMap">
+  			select  <include refid="AllColumn"></include> from yh_gncd_swjg where   ty_bz='N'
+  </select>
+
+  <sql id="where_condition">
+  <where>
+	<if test="controlId!=null">
+		and CONTROL_ID=#{controlId}
+	</if>
+	<if test="gndm!=null">
+		and GN_DM=#{gndm}
+	</if>
+	<if test="swjgdm!=null">
+		and SWJGDM=#{swjgdm}
+	</if>
+	<if test="tybz!=null">
+	   and TY_BZ=#{tybz}
+	</if>
+	<if test="lrrdm!=null">
+	and LRR_DM=#{lrrdm}
+	</if>
+	<if test="lrrq!=null">
+		and LRRQ=#{lrrq}
+	</if>
+	<if test="xgrdm!=null">
+		and XGR_DM=#{xgrdm}
+	</if>
+	<if test="xgrq!=null">	
+		and  XGRQ=#{xgrq}
+	</if>
+	</where>
+  </sql>
+  
+  <select id="getGncdControlByYhGncdSwjg" parameterType="com.jim.yygh.entity.po.YhGncdSwjg" resultMap="BaseResultMap">
+  		select <include refid="AllColumn"></include> from yh_gncd_swjg  <include refid="where_condition"></include>
+  </select>
+  <!-- 添加屏蔽菜单记录 addYhGncdSwjg -->
+  <insert id="addYhGncdSwjg" parameterType="com.jim.yygh.entity.po.YhGncdSwjg" >
+	  insert into  yh_gncd_swjg
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+					<if test="controlId!=null  and controlId!=''">
+						 CONTROL_ID,
+					</if>
+					<if test="gndm!=null and  gndm!=''">
+						 GN_DM,
+					</if>
+					<if test="swjgdm!=null  and swjgdm!=''">
+						 SWJGDM,
+					</if>
+					<if test="tybz!=null   and  tybz!=''"  >
+						 TY_BZ,
+					</if>
+					<if test="lrrdm!=null and  lrrdm!=''">
+						 LRR_DM,
+					</if>
+					<if test="lrrq!=null">
+						 LRRQ,
+					</if>
+					<if test="xgrdm!=null  and  xgrdm!=''">
+						 XGR_DM,
+					</if>
+					<if test="xgrq!=null">
+						 XGRQ,
+					</if>
+  		</trim>
+  		
+  		<trim prefix="values(" suffix=")" suffixOverrides=",">
+					<if test="controlId!=null  and controlId!=''">
+						#{controlId},
+					</if>
+					<if test="gndm!=null and  gndm!=''">
+						#{gndm},
+					</if>
+					<if test="swjgdm!=null  and swjgdm!=''">
+						#{swjgdm},
+					</if>
+					<if test="tybz!=null   and  tybz!=''"  >
+						#{tybz},
+					</if>
+					<if test="lrrdm!=null and  lrrdm!=''">
+					#{lrrdm},
+					</if>
+					<if test="lrrq!=null">
+						#{lrrq},
+					</if>
+					<if test="xgrdm!=null  and  xgrdm!=''">
+						#{xgrdm},
+					</if>
+					<if test="xgrq!=null">
+						#{xgrq},
+					</if>
+  		</trim>
+  		
+  </insert>
+
+<sql id="set_condition">
+	<set>
+	<if test="gndm!=null and  gndm!=''">
+		GN_DM=#{gndm},
+	</if>
+	<if test="swjgdm!=null  and swjgdm!=''">
+		SWJGDM=#{swjgdm},
+	</if>
+	<if test="tybz!=null   and  tybz!=''">
+		TY_BZ=#{tybz},
+	</if>
+	<if test="lrrdm!=null and  lrrdm!=''">
+		LRR_DM=#{lrrdm},
+	</if>
+	<if test="lrrq!=null">
+		LRRQ=#{lrrq},
+	</if>
+	<if test="xgrdm!=null  and  xgrdm!=''">
+		XGR_DM=#{xgrdm},
+	</if>
+	<if test="xgrq!=null">
+		XGRQ=#{xgrq},
+	</if>
+	</set>
+</sql>
+<!-- 根据主键修改屏蔽菜单记录 -->
+<update id="updateYhGncdSwjg" parameterType="com.jim.yygh.entity.po.YhGncdSwjg">
+		update yh_gncd_swjg  <include refid="set_condition"></include> where  CONTROL_ID=#{controlId}
+</update>
+
+<!-- 根据主键删除屏蔽菜单记录 -->
+<delete id="deleteYhGncdSwjgById" parameterType="java.lang.String">
+	delete  from  yh_gncd_swjg  where  CONTROL_ID=#{controlId}
+</delete>
+	
+  
+</mapper>

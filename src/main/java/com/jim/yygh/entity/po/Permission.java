@@ -1,5 +1,8 @@
 package com.jim.yygh.entity.po;
 
+import lombok.Data;
+
+
 public class Permission {
     private String id;
 
@@ -17,12 +20,22 @@ public class Permission {
 
     private String available;
 
+    private String  icon;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id == null ? null : id.trim();
+        this.id = id;
     }
 
     public String getName() {
@@ -30,7 +43,7 @@ public class Permission {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getType() {
@@ -38,7 +51,7 @@ public class Permission {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
     public String getUrl() {
@@ -46,7 +59,7 @@ public class Permission {
     }
 
     public void setUrl(String url) {
-        this.url = url == null ? null : url.trim();
+        this.url = url;
     }
 
     public String getPercode() {
@@ -54,7 +67,7 @@ public class Permission {
     }
 
     public void setPercode(String percode) {
-        this.percode = percode == null ? null : percode.trim();
+        this.percode = percode;
     }
 
     public String getPid() {
@@ -62,7 +75,7 @@ public class Permission {
     }
 
     public void setPid(String pid) {
-        this.pid = pid == null ? null : pid.trim();
+        this.pid = pid;
     }
 
     public String getPids() {
@@ -70,7 +83,7 @@ public class Permission {
     }
 
     public void setPids(String pids) {
-        this.pids = pids == null ? null : pids.trim();
+        this.pids = pids;
     }
 
     public String getAvailable() {
@@ -78,6 +91,6 @@ public class Permission {
     }
 
     public void setAvailable(String available) {
-        this.available = available == null ? null : available.trim();
+        this.available = available;
     }
 }
